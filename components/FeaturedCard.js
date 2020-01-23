@@ -1,7 +1,8 @@
 import React from 'react';
 import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
+import * as theme from '../theme';
 
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
+const { width: SCREEN_WIDTH } = Dimensions.get('screen');
 const CARD_IMAGE_HEIGHT = 180;
 
 function FeaturedCard({ id, name, image, category, price }) {
@@ -21,7 +22,9 @@ function FeaturedCard({ id, name, image, category, price }) {
           <Text style={styles.subtitle}>{category}</Text>
         </View>
         <View style={{ flex: 0, justifyContent: 'flex-end' }}>
-          <Text style={[styles.title, { color: '#2c7a7b' }]}>${price}</Text>
+          <Text style={[styles.title, { color: theme.colors.teal }]}>
+            ${price}
+          </Text>
         </View>
       </View>
     </View>
@@ -32,52 +35,38 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     width: SCREEN_WIDTH,
-    padding: 24
+    padding: theme.sizes.base * 3
   },
   imageContainer: {
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 5
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 6.27,
-    elevation: 10,
+    borderRadius: theme.radius.half,
+    ...theme.shadows.md,
     zIndex: 5
   },
   image: {
     width: '90%',
     height: CARD_IMAGE_HEIGHT,
     alignSelf: 'center',
-    borderRadius: 10
+    borderRadius: theme.radius.half
   },
   cardContent: {
     flex: 1,
     flexDirection: 'row',
-    paddingHorizontal: 24,
-    paddingVertical: 16,
+    paddingHorizontal: theme.sizes.base * 3,
+    paddingVertical: theme.sizes.padding,
     paddingTop: CARD_IMAGE_HEIGHT - 50,
     marginTop: (CARD_IMAGE_HEIGHT - 60) * -1,
-    backgroundColor: '#ffffff',
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 8.0,
-    elevation: 1
+    backgroundColor: theme.colors.white,
+    borderRadius: theme.radius.half,
+    ...theme.shadows.base
   },
   title: {
     fontSize: 18,
-    fontWeight: '700'
+    fontWeight: theme.fontWeights.bold
   },
   subtitle: {
     fontSize: 12,
-    color: '#A0AEC0',
-    fontWeight: '500'
+    color: theme.colors.gray,
+    fontWeight: theme.fontWeights.regular
   }
 });
 
