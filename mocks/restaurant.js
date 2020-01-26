@@ -39,6 +39,17 @@ const restaurant = {
       price: 10.99,
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquam efficitur elit, non lacinia mi fermentum sed. In mattis dignissim elementum'
+    },
+    {
+      id: uuid(),
+      name: 'Poqui-poqui',
+      image:
+        'https://www.kawalingpinoy.com/wp-content/uploads/2017/04/poqui-poqui-4.jpg',
+      category: 'Main Dish',
+      featured: false,
+      price: 6.99,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquam efficitur elit, non lacinia mi fermentum sed. In mattis dignissim elementum'
     }
   ]
 };
