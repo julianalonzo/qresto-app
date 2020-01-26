@@ -14,7 +14,9 @@ const restaurant = {
         'https://salu-salo.com/wp-content/uploads/2015/04/Pork-Adobo-3.jpg',
       category: 'Main Dish',
       featured: true,
-      price: 15.99
+      price: 15.99,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquam efficitur elit, non lacinia mi fermentum sed. In mattis dignissim elementum'
     },
     {
       id: uuid(),
@@ -23,7 +25,9 @@ const restaurant = {
         'https://i0.wp.com/www.angsarap.net/wp-content/uploads/2017/10/Sinanglaw.jpg?ssl=1',
       category: 'Soup',
       featured: true,
-      price: 12
+      price: 12,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquam efficitur elit, non lacinia mi fermentum sed. In mattis dignissim elementum'
     },
     {
       id: uuid(),
@@ -32,7 +36,9 @@ const restaurant = {
         'https://i.pinimg.com/474x/63/ae/17/63ae17e98e2019da608cb8fe1c3efddb--filipino-recipes-filipino-food.jpg',
       category: 'Appetizers',
       featured: true,
-      price: 10.99
+      price: 10.99,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquam efficitur elit, non lacinia mi fermentum sed. In mattis dignissim elementum'
     }
   ]
 };
