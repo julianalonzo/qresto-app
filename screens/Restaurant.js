@@ -23,6 +23,9 @@ const HEADER_MIN_HEIGHT = 80;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
 function Restaurant({ name, address, coverPhoto, foods }) {
+  const [featuredItemsScrollXState] = useState(new Animated.Value(0));
+  const dotPosition = Animated.divide(featuredItemsScrollXState, SCREEN_WIDTH);
+
   const [scrollYState] = useState(
     new Animated.Value(
       // iOS has negative initial scroll value because content inset...
@@ -94,21 +97,57 @@ function Restaurant({ name, address, coverPhoto, foods }) {
         contentOffset={{ y: -HEADER_MAX_HEIGHT }}
         showsVerticalScrollIndicator={false}
       >
-        <View style={[styles.fill, { marginBottom: theme.sizes.base * 2 }]}>
+        <View style={[styles.fill, { marginBottom: theme.sizes.base * 4 }]}>
           <Text style={styles.sectionTitle}>Featured</Text>
           <View style={styles.fill}>
-            <ScrollView
+            <Animated.ScrollView
               horizontal
               pagingEnabled
               scrollEnabled
               showsHorizontalScrollIndicator={false}
               decelerationRate={0}
+              scrollEventThrottle={16}
               snapToAlignment="center"
+              onScroll={Animated.event([
+                {
+                  nativeEvent: {
+                    contentOffset: { x: featuredItemsScrollXState }
+                  }
+                }
+              ])}
             >
               {featuredItems.map(item => (
                 <FeaturedCard key={item.id} {...item} />
               ))}
-            </ScrollView>
+            </Animated.ScrollView>
+            <View
+              style={[
+                styles.fill,
+                {
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }
+              ]}
+            >
+              {featuredItems.map((item, index) => {
+                const borderWidth = dotPosition.interpolate({
+                  inputRange: [index - 1, index, index + 1],
+                  outputRange: [0, 2.5, 0],
+                  extrapolate: 'clamp'
+                });
+                return (
+                  <Animated.View
+                    key={`step-${item.id}`}
+                    style={[
+                      styles.dots,
+                      styles.activeDot,
+                      { borderWidth: borderWidth }
+                    ]}
+                  />
+                );
+              })}
+            </View>
           </View>
         </View>
         <View style={styles.fill}>
@@ -244,6 +283,21 @@ const styles = StyleSheet.create({
     fontWeight: theme.fontWeights.bold,
     fontSize: theme.sizes.subHeader,
     paddingHorizontal: theme.sizes.padding
+  },
+  dots: {
+    width: 10,
+    height: 10,
+    backgroundColor: theme.colors.lightGray,
+    borderWidth: 2.5,
+    borderRadius: 5,
+    borderColor: 'transparent',
+    marginHorizontal: 6
+  },
+  activeDot: {
+    width: 12.5,
+    height: 12.5,
+    borderRadius: 6.25,
+    borderColor: theme.colors.teal
   },
   categoryTitle: {
     fontSize: theme.sizes.subHeader - 6,
