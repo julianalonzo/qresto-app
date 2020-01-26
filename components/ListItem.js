@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: theme.radius.half,
+    borderWidth: 1,
     borderColor: theme.colors.gray,
     marginRight: theme.sizes.base * 2
   },
