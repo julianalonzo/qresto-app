@@ -12,6 +12,7 @@ import {
   View
 } from 'react-native';
 import FeaturedCard from '../components/FeaturedCard';
+import ListItem from '../components/ListItem';
 import restaurant from '../mocks/restaurant';
 import * as theme from '../theme';
 
@@ -128,6 +129,15 @@ function Restaurant({ name, address, coverPhoto, foods }) {
             ))}
           </ScrollView>
         </View>
+        <View
+          style={[styles.fill, styles.paddingHorizontal, { paddingBottom: 24 }]}
+        >
+          {foods.map(food => (
+            <TouchableOpacity key={food.id} activeOpacity={0.5}>
+              <ListItem {...food} />
+            </TouchableOpacity>
+          ))}
+        </View>
       </Animated.ScrollView>
       <Animated.View
         style={[
@@ -177,8 +187,11 @@ const styles = StyleSheet.create({
   fill: {
     flex: 0
   },
+  paddingHorizontal: {
+    paddingHorizontal: theme.sizes.padding
+  },
   body: {
-    flex: 1,
+    flex: 0,
     paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 24
   },
   header: {
