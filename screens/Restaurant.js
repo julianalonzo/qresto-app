@@ -94,7 +94,7 @@ function Restaurant({ name, address, coverPhoto, foods }) {
         contentOffset={{ y: -HEADER_MAX_HEIGHT }}
         showsVerticalScrollIndicator={false}
       >
-        <View style={styles.fill}>
+        <View style={[styles.fill, { marginBottom: theme.sizes.base * 2 }]}>
           <Text style={styles.sectionTitle}>Featured</Text>
           <View style={styles.fill}>
             <ScrollView
